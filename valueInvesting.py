@@ -71,8 +71,9 @@ for i in range(0, len(symbol_groups)):
 #############################################################################################################################################################
 
 
+
 symbol = 'AAPL'
-batch_api_call_url = f'https://sandbox.iexapis.com/stable/stock/market/batch/?types=advanced-stats,quote&symbols={symbol}&token={IEX_CLOUD_API_TOKEN_TEST}'
+batch_api_call_url = f'https://cloud.iexapis.com/stable/stock/market/batch/?types=advanced-stats,quote&symbols={symbol}&token={IEX_CLOUD_API_TOKEN_REAL}'
 data = requests.get(batch_api_call_url).json()
 
 # P/E Ratio
@@ -113,7 +114,7 @@ rv_columns = [
 rv_dataframe = pd.DataFrame(columns = rv_columns)
 
 for symbol_string in symbol_strings:
-    batch_api_call_url = f'https://sandbox.iexapis.com/stable/stock/market/batch?symbols={symbol_string}&types=quote,advanced-stats&token={IEX_CLOUD_API_TOKEN_TEST}'
+    batch_api_call_url = f'https://cloud.iexapis.com/stable/stock/market/batch?symbols={symbol_string}&types=quote,advanced-stats&token={IEX_CLOUD_API_TOKEN_REAL}'
     data = requests.get(batch_api_call_url).json()
     for symbol in symbol_string.split(','):
         enterprise_value = data[symbol]['advanced-stats']['enterpriseValue']
